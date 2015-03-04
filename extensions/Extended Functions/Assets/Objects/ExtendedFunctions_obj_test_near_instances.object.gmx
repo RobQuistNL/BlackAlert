@@ -25,11 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>selected = false;
-action = undefined;
-
-hp = 10;
-
+            <string>instnumber = get_integer('How many instances?', 30);
+nearnum = get_integer('How many to fetch near?', 8);
+repeat (instnumber) {
+       instance_create(random(room_width), random(room_height), ExtendedFunctions_obj_near_instance);
+}
 </string>
           </argument>
         </arguments>
@@ -52,12 +52,22 @@ hp = 10;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (selected) {
-    draw_set_color(c_green);
-    draw_rectangle(x, y, x + sprite_width, y + sprite_height, 1);
+            <string>x = mouse_x;
+y = mouse_y;
+
+nearest = get_nearest_instances(ExtendedFunctions_obj_near_instance, id, nearnum);
+
+while (!ds_stack_empty(nearest)) {
+    inst = ds_stack_pop(nearest);
+    draw_set_color(c_red);
+    draw_ellipse(inst.x-8, inst.y-8, inst.x+8, inst.y+8, true);
+    draw_ellipse(inst.x-10, inst.y-10, inst.x+10, inst.y+10, true);
 }
 
-draw_self();
+ds_stack_destroy(nearest);
+
+draw_set_color(c_black);
+draw_text(10,10,"FPS:" + string(fps) + " - REAL: " + string(fps_real));
 </string>
           </argument>
         </arguments>

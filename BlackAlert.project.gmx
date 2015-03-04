@@ -3,7 +3,10 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\Extended Functions</extension>
+    <extension index="1">extensions\39js</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_unit</sprite>
@@ -18,6 +21,36 @@
       <script>scripts\get_control.gml</script>
       <script>scripts\set_control.gml</script>
     </scripts>
+    <scripts name="ExtendedFunctions">
+      <scripts name="testfunctions">
+        <script>scripts\test_suite_end.gml</script>
+        <script>scripts\test_suite_init.gml</script>
+        <script>scripts\test_assert_same.gml</script>
+      </scripts>
+      <scripts name="dechexfunctions">
+        <script>scripts\dectohex.gml</script>
+        <script>scripts\hextodec.gml</script>
+      </scripts>
+      <scripts name="stringfunctions">
+        <script>scripts\string_explode.gml</script>
+        <script>scripts\array_implode.gml</script>
+        <script>scripts\string_reverse.gml</script>
+        <script>scripts\string_mask.gml</script>
+        <script>scripts\url_encode.gml</script>
+        <script>scripts\url_decode.gml</script>
+        <script>scripts\string_ends_with.gml</script>
+        <script>scripts\string_starts_with.gml</script>
+        <script>scripts\string_prepend.gml</script>
+        <script>scripts\string_append.gml</script>
+      </scripts>
+      <scripts name="general">
+        <script>scripts\round_whole.gml</script>
+      </scripts>
+      <scripts name="find_instances">
+        <script>scripts\get_nearest_instances.gml</script>
+        <script>scripts\get_furthest_instances.gml</script>
+      </scripts>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Units">
@@ -27,10 +60,15 @@
       <object>objects\obj_par_unit</object>
     </objects>
     <object>objects\obj_gamecontrol</object>
+    <object>objects\ExtendedFunctions_obj_test</object>
+    <object>objects\ExtendedFunctions_obj_near_instance</object>
+    <object>objects\ExtendedFunctions_obj_test_near_instances</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init_game</room>
     <room>rooms\room_unit_test</room>
+    <room>rooms\ExtendedFunctions_rm_test</room>
+    <room>rooms\ExtendedFunctions_test_nearest</room>
   </rooms>
   <constants number="2">
     <constant name="ACTION_CANCEL">1</constant>

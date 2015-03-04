@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-500</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>select_state = false;
+            <string>///Setup select state
+select_state = 0;
 select_x_start = 0;
 select_y_start = 0;
 select_x_stop = 0;
@@ -52,19 +53,50 @@ select_y_stop = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button_pressed(get_control(ACTION_SELECT))) {
-    select_state = true;
+            <string>///Handle select state
+if (mouse_check_button_pressed(get_control(ACTION_SELECT))) {
+    select_state = 1;
     select_x_start = mouse_x;
     select_y_start = mouse_y;
 }
 
-if (select_state == true) {
+if (select_state != 0) {
     select_x_stop = mouse_x;
     select_y_stop = mouse_y;
+    if (point_distance(select_x_start, select_y_start, select_x_stop, select_y_stop) &gt; 7) {
+        select_state = 2;
+    }
 }
 
 if (mouse_check_button_released(get_control(ACTION_SELECT))) {
-    select_state = false;
+    if (select_state == 2) {
+        select_state = 0;
+    
+        with (obj_par_unit) {
+            selected = false;
+        }
+        
+        with (obj_par_unit) {
+            // Rewrite this so it works nice, instead of crappy.
+            if (point_in_rectangle(x, y, other.select_x_start, other.select_y_start, other.select_x_stop, other.select_y_stop)) {
+                selected = true;
+            }
+        }
+    }
+    
+    if (select_state = 1) {
+        //Action button
+        show_debug_message('Simple click.');
+        select_state = 0;
+    }
+}
+
+// Cancel button handling
+if (mouse_check_button_pressed(get_control(ACTION_CANCEL))) {
+    show_debug_message('Cancel event fired');
+    with (obj_par_unit) {
+        selected = false;
+    }
 }
 </string>
           </argument>
@@ -88,7 +120,9 @@ if (mouse_check_button_released(get_control(ACTION_SELECT))) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (select_state == true) {
+            <string>///Draw select state
+draw_text(10, 10, string(select_state));
+if (select_state == 2) {
     draw_set_color(c_lime);
     draw_rectangle(select_x_start, select_y_start, select_x_stop, select_y_stop, true);
 }
