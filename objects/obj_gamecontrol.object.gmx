@@ -25,7 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>selectingstate = false;
+            <string>select_state = false;
+select_x_start = 0;
+select_y_start = 0;
+select_x_stop = 0;
+select_y_stop = 0;
 </string>
           </argument>
         </arguments>
@@ -48,8 +52,45 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (mouse_check_button(global.controls[ACTION_SELECT])) {
+            <string>if (mouse_check_button_pressed(get_control(ACTION_SELECT))) {
+    select_state = true;
+    select_x_start = mouse_x;
+    select_y_start = mouse_y;
+}
 
+if (select_state == true) {
+    select_x_stop = mouse_x;
+    select_y_stop = mouse_y;
+}
+
+if (mouse_check_button_released(get_control(ACTION_SELECT))) {
+    select_state = false;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (select_state == true) {
+    draw_set_color(c_lime);
+    draw_rectangle(select_x_start, select_y_start, select_x_stop, select_y_stop, true);
 }
 </string>
           </argument>

@@ -14,6 +14,10 @@
     <script>scripts\scr_game_init.gml</script>
     <script>scripts\scr_load_default_settings.gml</script>
     <script>scripts\scr_test.gml</script>
+    <scripts name="getters">
+      <script>scripts\get_control.gml</script>
+      <script>scripts\set_control.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Units">
