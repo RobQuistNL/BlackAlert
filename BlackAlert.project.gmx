@@ -5,9 +5,33 @@
   </Configs>
   <NewExtensions/>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_unit</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_game_init.gml</script>
+    <script>scripts\scr_load_default_settings.gml</script>
+    <script>scripts\scr_test.gml</script>
+  </scripts>
+  <objects name="objects">
+    <objects name="Units">
+      <object>objects\obj_test_unit</object>
+    </objects>
+    <objects name="Parents">
+      <object>objects\obj_par_unit</object>
+    </objects>
+    <object>objects\obj_gamecontrol</object>
+  </objects>
+  <rooms name="rooms">
+    <room>rooms\room_init_game</room>
+    <room>rooms\room_unit_test</room>
+  </rooms>
+  <constants number="2">
+    <constant name="ACTION_CANCEL">1</constant>
+    <constant name="ACTION_SELECT">0</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>
