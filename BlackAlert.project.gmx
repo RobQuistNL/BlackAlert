@@ -10,6 +10,16 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_unit</sprite>
+    <sprites name="Units">
+      <sprites name="Allied">
+        <sprite>sprites\spr_unit_allied_gi</sprite>
+        <sprite>sprites\spr_unit_allied_attackdog</sprite>
+      </sprites>
+      <sprites name="Soviet">
+        <sprite>sprites\spr_unit_soviet_conscript</sprite>
+        <sprite>sprites\spr_unit_soviet_attackdog</sprite>
+      </sprites>
+    </sprites>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -51,6 +61,13 @@
         <script>scripts\get_furthest_instances.gml</script>
       </scripts>
     </scripts>
+    <scripts name="Unit Definitions">
+      <script>scripts\scr_define_units.gml</script>
+      <script>scripts\du_set_unit_identifier.gml</script>
+      <script>scripts\du_val.gml</script>
+      <script>scripts\du_anim_val.gml</script>
+      <script>scripts\du_anim_defaults.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Units">
@@ -58,6 +75,7 @@
     </objects>
     <objects name="Parents">
       <object>objects\obj_par_unit</object>
+      <object>objects\unit_definitions</object>
     </objects>
     <object>objects\obj_gamecontrol</object>
     <object>objects\ExtendedFunctions_obj_test</object>
@@ -70,7 +88,28 @@
     <room>rooms\ExtendedFunctions_rm_test</room>
     <room>rooms\ExtendedFunctions_test_nearest</room>
   </rooms>
-  <constants number="2">
+  <constants number="23">
+    <constant name="ANIM_STAND_UR">17</constant>
+    <constant name="ANIM_STAND_R">16</constant>
+    <constant name="ANIM_STAND_DR">15</constant>
+    <constant name="ANIM_STAND_D">14</constant>
+    <constant name="ANIM_STAND_DL">13</constant>
+    <constant name="ANIM_STAND_L">12</constant>
+    <constant name="ANIM_STAND_UL">11</constant>
+    <constant name="ANIM_STAND_U">10</constant>
+    <constant name="ANIM_WALK_UR">9</constant>
+    <constant name="ANIM_WALK_R">8</constant>
+    <constant name="ANIM_WALK_DR">7</constant>
+    <constant name="ANIM_WALK_D">6</constant>
+    <constant name="ANIM_WALK_DL">5</constant>
+    <constant name="ANIM_WALK_L">4</constant>
+    <constant name="ANIM_WALK_UL">3</constant>
+    <constant name="ANIM_WALK_U">2</constant>
+    <constant name="ANIM_IDLE_2">1</constant>
+    <constant name="ANIM_IDLE_1">0</constant>
+    <constant name="ANIM_START">1</constant>
+    <constant name="ANIM_STOP">0</constant>
+    <constant name="U_CNSCRPT">0</constant>
     <constant name="ACTION_CANCEL">1</constant>
     <constant name="ACTION_SELECT">0</constant>
   </constants>

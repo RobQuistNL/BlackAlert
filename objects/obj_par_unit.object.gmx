@@ -28,6 +28,8 @@
             <string>selected = false;
 action = undefined;
 
+animation = 0;
+
 hp = 10;
 
 </string>
