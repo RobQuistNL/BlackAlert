@@ -31,6 +31,14 @@ select_x_start = 0;
 select_y_start = 0;
 select_x_stop = 0;
 select_y_stop = 0;
+
+///An array(stack) with all the selected units.
+selectedItems = ds_list_create();
+
+///Generate motion planning grid
+mp_grid = mp_grid_create(0, 0, room_width / 32, room_height /32, 32, 32)
+
+mp_grid_add_instances(mp_grid, obj_test_block, false);
 </string>
           </argument>
         </arguments>
@@ -76,17 +84,25 @@ if (mouse_check_button_released(get_control(ACTION_SELECT))) {
             selected = false;
         }
         
+        ds_list_clear(selectedItems);
+
         with (obj_par_unit) {
             // Rewrite this so it works nice, instead of crappy.
             if (point_in_rectangle(x, y, other.select_x_start, other.select_y_start, other.select_x_stop, other.select_y_stop)) {
                 selected = true;
+                ds_list_add(other.selectedItems, id);
             }
+        }
+        
+        if (ds_list_size(selectedItems) &gt; 0) {
+            //@todo -&gt; make this the right sound for the right units
+            audio_play_sound(choose(snd_u_s_c_s_1, snd_u_s_c_s_2, snd_u_s_c_s_3), 1, false);
         }
     }
     
     if (select_state = 1) {
         //Action button
-        show_debug_message('Simple click.');
+        ui_simple_click();
         select_state = 0;
     }
 }

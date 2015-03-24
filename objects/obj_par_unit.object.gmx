@@ -29,14 +29,17 @@
 
 selected = false;
 action = undefined;
+destination_x = undefined;
+destination_y = undefined;
 
 animation = 0;
 
 direction = round_whole(random(360), 45);
 hp = 10;
 
-
 unittype = U_CNSCRPT;
+
+path = path_add();
 </string>
           </argument>
         </arguments>
@@ -60,53 +63,54 @@ unittype = U_CNSCRPT;
           <argument>
             <kind>1</kind>
             <string>///Unit animation cycle
-switch (direction) {
+//@todo -&gt; change path_speed to our _REAL_ speed.
+switch (round_whole(direction, 45)) {
     case 0:
     case 360:
         animation = ANIM_WALK_R;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_R;
         }
         break;
     case 45: 
         animation = ANIM_WALK_UR;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_UR;
         }
         break;
     case 90: 
         animation = ANIM_WALK_U;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_U;
         }
         break;
     case 135: 
         animation = ANIM_WALK_UL;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_UL;
         }
         break;
     case 180: 
         animation = ANIM_WALK_L;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_L;
         }
         break;
     case 225: 
         animation = ANIM_WALK_DL;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_DL;
         }
         break;
     case 270: 
         animation = ANIM_WALK_D;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_D;
         }
         break;
     case 315:
         animation = ANIM_WALK_DR;
-        if (speed = 0) {
+        if (path_speed = 0) {
             animation = ANIM_STAND_DR;
         }
         break;
@@ -124,6 +128,61 @@ if (image_index &lt; __start_image) {
 }
 
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Unit movement code
+
+if (!is_undefined(action) &amp;&amp; action == ACTION_WALK) {
+   if (!is_undefined(destination_x) &amp;&amp; !is_undefined(destination_y)) {
+
+       //if (point_distance(center_x, center_y, destination_x, destination_y) &gt; 10) {
+           //speed = 2;
+           //direction = round_whole(point_direction(center_x, center_y, destination_x, destination_y), 45);
+       //}
+   }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="8">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>speed = 0;
+path_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -146,9 +205,19 @@ if (image_index &lt; __start_image) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (selected) {
+            <string>///Draw select state and destination
+if (selected) {
     draw_set_color(c_green);
-    draw_rectangle(x, y, x + sprite_width, y + sprite_height, 1);
+    draw_rectangle(x-10, y+20, x+10, y+20, 1);
+
+    if (!is_undefined(action) &amp;&amp; action == ACTION_WALK) {
+       if (!is_undefined(destination_x) &amp;&amp; !is_undefined(destination_y)) {
+           draw_set_color(c_lime);
+           draw_rectangle(destination_x-2, destination_y-2, destination_x+2, destination_y+2, false);
+           draw_line(x, y, destination_x, destination_y);
+       }
+    }
+
 }
 
 draw_self();

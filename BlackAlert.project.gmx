@@ -7,7 +7,26 @@
     <extension index="0">extensions\Extended Functions</extension>
     <extension index="1">extensions\39js</extension>
   </NewExtensions>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="Units">
+      <sound>sound\Soviet</sound>
+      <sounds name="Soviet">
+        <sounds name="Conscripts">
+          <sounds name="Select">
+            <sound>sound\snd_u_s_c_s_1</sound>
+            <sound>sound\snd_u_s_c_s_2</sound>
+            <sound>sound\snd_u_s_c_s_3</sound>
+          </sounds>
+          <sounds name="Move">
+            <sound>sound\snd_u_s_c_m_1</sound>
+            <sound>sound\snd_u_s_c_m_3</sound>
+            <sound>sound\snd_u_s_c_m_2</sound>
+            <sound>sound\snd_u_s_c_m_4</sound>
+          </sounds>
+        </sounds>
+      </sounds>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_unit</sprite>
     <sprites name="Units">
@@ -20,6 +39,7 @@
         <sprite>sprites\spr_unit_soviet_attackdog</sprite>
       </sprites>
     </sprites>
+    <sprite>sprites\spr_test_block</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -70,6 +90,9 @@
       <script>scripts\du_anim_get.gml</script>
       <script>scripts\du_anim_defaults.gml</script>
     </scripts>
+    <scripts name="UI">
+      <script>scripts\ui_simple_click.gml</script>
+    </scripts>
   </scripts>
   <objects name="objects">
     <objects name="Units">
@@ -83,6 +106,7 @@
     <object>objects\ExtendedFunctions_obj_test</object>
     <object>objects\ExtendedFunctions_obj_near_instance</object>
     <object>objects\ExtendedFunctions_obj_test_near_instances</object>
+    <object>objects\obj_test_block</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room_init_game</room>
@@ -90,7 +114,7 @@
     <room>rooms\ExtendedFunctions_rm_test</room>
     <room>rooms\ExtendedFunctions_test_nearest</room>
   </rooms>
-  <constants number="23">
+  <constants number="24">
     <constant name="ANIM_STAND_UR">17</constant>
     <constant name="ANIM_STAND_R">16</constant>
     <constant name="ANIM_STAND_DR">15</constant>
@@ -113,6 +137,7 @@
     <constant name="ANIM_STOP">0</constant>
     <constant name="U_CNSCRPT">0</constant>
     <constant name="ACTION_CANCEL">1</constant>
+    <constant name="ACTION_WALK">2</constant>
     <constant name="ACTION_SELECT">0</constant>
   </constants>
   <help>
