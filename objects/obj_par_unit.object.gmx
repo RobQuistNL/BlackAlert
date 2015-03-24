@@ -25,12 +25,104 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>selected = false;
+            <string>image_speed = 0.4;
+
+selected = false;
 action = undefined;
 
 animation = 0;
 
+direction = round_whole(random(360), 45);
 hp = 10;
+
+
+unittype = U_CNSCRPT;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Unit animation cycle
+switch (direction) {
+    case 0:
+    case 360:
+        animation = ANIM_WALK_R;
+        if (speed = 0) {
+            animation = ANIM_STAND_R;
+        }
+        break;
+    case 45: 
+        animation = ANIM_WALK_UR;
+        if (speed = 0) {
+            animation = ANIM_STAND_UR;
+        }
+        break;
+    case 90: 
+        animation = ANIM_WALK_U;
+        if (speed = 0) {
+            animation = ANIM_STAND_U;
+        }
+        break;
+    case 135: 
+        animation = ANIM_WALK_UL;
+        if (speed = 0) {
+            animation = ANIM_STAND_UL;
+        }
+        break;
+    case 180: 
+        animation = ANIM_WALK_L;
+        if (speed = 0) {
+            animation = ANIM_STAND_L;
+        }
+        break;
+    case 225: 
+        animation = ANIM_WALK_DL;
+        if (speed = 0) {
+            animation = ANIM_STAND_DL;
+        }
+        break;
+    case 270: 
+        animation = ANIM_WALK_D;
+        if (speed = 0) {
+            animation = ANIM_STAND_D;
+        }
+        break;
+    case 315:
+        animation = ANIM_WALK_DR;
+        if (speed = 0) {
+            animation = ANIM_STAND_DR;
+        }
+        break;
+}
+
+__start_image = du_anim_get(unittype, animation, ANIM_START);
+__stop_image = du_anim_get(unittype, animation, ANIM_STOP);
+
+if (image_index &gt; __stop_image) {
+   image_index = __start_image;
+}
+
+if (image_index &lt; __start_image) {
+   image_index = __start_image;
+}
+
 
 </string>
           </argument>
@@ -60,6 +152,9 @@ hp = 10;
 }
 
 draw_self();
+
+draw_text(x, y+10, direction);
+draw_text(x, y+20, animation);
 </string>
           </argument>
         </arguments>

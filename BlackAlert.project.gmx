@@ -65,7 +65,9 @@
       <script>scripts\scr_define_units.gml</script>
       <script>scripts\du_set_unit_identifier.gml</script>
       <script>scripts\du_val.gml</script>
+      <script>scripts\du_get.gml</script>
       <script>scripts\du_anim_val.gml</script>
+      <script>scripts\du_anim_get.gml</script>
       <script>scripts\du_anim_defaults.gml</script>
     </scripts>
   </scripts>
