@@ -5,11 +5,9 @@
   </Configs>
   <NewExtensions>
     <extension index="0">extensions\Extended Functions</extension>
-    <extension index="1">extensions\39js</extension>
   </NewExtensions>
   <sounds name="sound">
     <sounds name="Units">
-      <sound>sound\Soviet</sound>
       <sounds name="Soviet">
         <sounds name="Conscripts">
           <sounds name="Select">
@@ -26,9 +24,26 @@
         </sounds>
       </sounds>
     </sounds>
+    <sounds name="Vehicles">
+      <sounds name="Soviet">
+        <sounds name="MVC">
+          <sound>sound\snd_v_s_mvc</sound>
+        </sounds>
+      </sounds>
+    </sounds>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_unit</sprite>
+    <sprites name="Buildings">
+      <sprites name="Soviet">
+        <sprite>sprites\spr_building_soviet_base_build</sprite>
+        <sprite>sprites\spr_building_soviet_base</sprite>
+      </sprites>
+    </sprites>
+    <sprites name="Vehicles">
+      <sprites name="Soviet">
+        <sprite>sprites\spr_vehicle_soviet_mvc</sprite>
+      </sprites>
+    </sprites>
     <sprites name="Units">
       <sprites name="Allied">
         <sprite>sprites\spr_unit_allied_gi</sprite>
@@ -40,8 +55,17 @@
       </sprites>
     </sprites>
     <sprite>sprites\spr_test_block</sprite>
+    <sprite>sprites\spr_cursor</sprite>
+    <sprites name="GUI">
+      <sprite>sprites\spr_gui_gdi_right_top</sprite>
+      <sprite>sprites\spr_gui_gdi_right_center</sprite>
+      <sprite>sprites\spr_gui_gdi_right_bottom</sprite>
+    </sprites>
+    <sprite>sprites\sprite12</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_game_init.gml</script>
@@ -89,14 +113,19 @@
       <script>scripts\du_anim_val.gml</script>
       <script>scripts\du_anim_get.gml</script>
       <script>scripts\du_anim_defaults.gml</script>
+      <script>scripts\du_current_unit_identifier.gml</script>
     </scripts>
     <scripts name="UI">
       <script>scripts\ui_simple_click.gml</script>
     </scripts>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_text</font>
+  </fonts>
   <objects name="objects">
     <objects name="Units">
-      <object>objects\obj_test_unit</object>
+      <object>objects\obj_test_conscript</object>
+      <object>objects\obj_test_mvc</object>
     </objects>
     <objects name="Parents">
       <object>objects\obj_par_unit</object>
@@ -114,7 +143,15 @@
     <room>rooms\ExtendedFunctions_rm_test</room>
     <room>rooms\ExtendedFunctions_test_nearest</room>
   </rooms>
-  <constants number="24">
+  <constants number="33">
+    <constant name="UNIT_TYPE_VEHICLE">1</constant>
+    <constant name="UNIT_TYPE_INFANTRY">0</constant>
+    <constant name="UNIT_MOVEMENT_TYPE_GROUND">0</constant>
+    <constant name="ACTION_ATTACK_SOUND">4</constant>
+    <constant name="ACTION_MOVE_SOUND">3</constant>
+    <constant name="ACTION_SELECT_SOUND">2</constant>
+    <constant name="UNIT_MOVEMENT_TYPE">1</constant>
+    <constant name="UNIT_TYPE">0</constant>
     <constant name="ANIM_STAND_UR">17</constant>
     <constant name="ANIM_STAND_R">16</constant>
     <constant name="ANIM_STAND_DR">15</constant>
@@ -135,6 +172,7 @@
     <constant name="ANIM_IDLE_1">0</constant>
     <constant name="ANIM_START">1</constant>
     <constant name="ANIM_STOP">0</constant>
+    <constant name="V_SMVC">1</constant>
     <constant name="U_CNSCRPT">0</constant>
     <constant name="ACTION_CANCEL">1</constant>
     <constant name="ACTION_WALK">2</constant>

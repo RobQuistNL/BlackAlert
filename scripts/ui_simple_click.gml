@@ -14,4 +14,5 @@ for (var i = 0; i < ds_list_size(selectedItems); i++) {
 
 if (ds_list_size(selectedItems) > 0) {
 audio_play_sound(choose(snd_u_s_c_m_1, snd_u_s_c_m_2, snd_u_s_c_m_3, snd_u_s_c_m_4), 1, false);
+//Use the right sound here -> ds_list_add(du_get(du_current_unit_identifier(), ACTION_MOVE_SOUND), snd_v_s_mvc);
 }

@@ -208,7 +208,7 @@ path_speed = 0;
             <string>///Draw select state and destination
 if (selected) {
     draw_set_color(c_green);
-    draw_rectangle(x-10, y+20, x+10, y+20, 1);
+    draw_rectangle(x-10, y-20, x+10, y+20, 1);
 
     if (!is_undefined(action) &amp;&amp; action == ACTION_WALK) {
        if (!is_undefined(destination_x) &amp;&amp; !is_undefined(destination_y)) {
@@ -222,8 +222,8 @@ if (selected) {
 
 draw_self();
 
-draw_text(x, y+10, direction);
-draw_text(x, y+20, animation);
+//draw_text(x, y+10, direction);
+//draw_text(x, y+20, animation);
 </string>
           </argument>
         </arguments>
